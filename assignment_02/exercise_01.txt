@@ -1,0 +1,27 @@
+1. Explain why do we want sometimes to use setImmediate instead of using setTimeout?
+Answer.
+setTimeout is simply like calling the function after delay has finished. Whenever a function is called it is not executed immediately, but queued so that it is executed after all the executing and currently queued eventhandlers finish first. setTimeout(,0) essentially means execute after all current functions in the present queue get executed. No guarantees can be made about how long it could take.
+setImmediate is similar in this regard except that it doesn't use queue of functions. It checks queue of I/O eventhandlers. If all I/O events in the current snapshot are processed, it executes the callback. It queues them immedieately after the last I/O handler somewhat like process.nextTick. So it is faster.
+setTimeout is un-intrusive way of calling functions after some time just like in the browser and will be slow as it will check the timer at least once before executing. So, sometimes we use setImmediate instead of using setTimeout.
+
+2. Explain the difference between process.nextTick and setImmediate?
+Answer.
+setImmediate is used if we want to queue the function behind whatever I/O event callbacks that are already in the event queue.
+process.nextTick is uesd to effectively queue the function at the head of the event queue so that it executes immediately after the current function completes.
+In a case we're trying to break up a long running, CPU-bound job using recursion, it is better use setImmediate rather than process.nextTick to queue the next iteration because any I/O event callbacks wouldn't get the chance to run between iterations.
+Callbacks passed to process.nextTick will usually be called at the end of the current flow of execution, and are thus approximately as fast as calling a function synchronously. Left unchecked, this would starve the event loop, preventing any I/O from occurring. setImmediates are queued in the order created, and are popped off the queue once per loop iteration. This is different from process.nextTick which will execute process.maxTickDepth queued callbacks per iteration. 
+setImmediate will yield to the event loop after firing a queued callback to make sure I/O is not being starved.
+
+3. Name 10 global modules available in Node environment.
+Answer.
+The 10 global mmodules available in Node environment are:-
+i. http
+ii. fs
+iii. stream
+iv. buffer
+v. setTimeout
+vi. setImmediate
+vii. os
+viii. process
+ix. url
+x. domain
