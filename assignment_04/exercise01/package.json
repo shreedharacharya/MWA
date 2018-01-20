@@ -1,0 +1,16 @@
+{
+  "name": "exercise01",
+  "version": "1.0.0",
+  "description": "assignmetn 4 first exercise( creating reactive server",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Shreedhar Achrya",
+  "license": "ISC",
+  "dependencies": {
+    "@reactivex/rxjs": "^5.5.6",
+    "i": "^0.3.6",
+    "npm": "^5.6.0"
+  }
+}

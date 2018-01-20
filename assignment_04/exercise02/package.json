@@ -1,0 +1,14 @@
+{
+  "name": "exercise02",
+  "version": "1.0.0",
+  "description": "checkSystem",
+  "main": "app.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "shreedhar acharya",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^5.5.6"
+  }
+}
